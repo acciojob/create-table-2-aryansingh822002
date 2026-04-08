@@ -1,40 +1,39 @@
 function createTable() {
-    //Write your code here
-  function createTable() {
-    // 1. Get user input via prompts
+    // Prompt user for rows and columns
     let rn = prompt("Input number of rows");
     let cn = prompt("Input number of columns");
 
-    // 2. Convert inputs to numbers
-    rn = parseInt(rn);
-    cn = parseInt(cn);
+    // Convert input to numbers
+    rn = Number(rn);
+    cn = Number(cn);
 
-    // 3. Validation: Handle non-numeric, zero, or negative values
+    // Validate input: check if numbers
     if (isNaN(rn) || isNaN(cn)) {
-        // Ignore input if non-numeric
-        return; 
+        return; // Ignore non-numeric input
     }
+
+    // Validate input: check for positive values
     if (rn <= 0 || cn <= 0) {
-        alert("Please enter positive numbers greater than 0.");
+        alert("Please enter positive numbers greater than 0");
         return;
     }
 
-    // 4. Reference the table element and clear any existing content
-    const table = document.getElementById("myTable");
+    // Get table reference
+    let table = document.getElementById("myTable");
+
+    // Clear existing table content (important for repeated clicks)
     table.innerHTML = "";
 
-    // 5. Build the table using nested loops
+    // Create table rows and columns
     for (let i = 0; i < rn; i++) {
-        // Create a new row
-        let row = table.insertRow(i);
-        
+        let row = document.createElement("tr");
+
         for (let j = 0; j < cn; j++) {
-            // Create a new cell in the current row
-            let cell = row.insertCell(j);
-            
-            // Set the cell text using 0-based indices
+            let cell = document.createElement("td");
             cell.textContent = `Row-${i} Column-${j}`;
+            row.appendChild(cell);
         }
+
+        table.appendChild(row);
     }
-}
 }
